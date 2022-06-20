@@ -1,0 +1,92 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/11/%E1%84%82%E1%85%A6%E1%86%BA%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%8E%E1%85%AE%E1%84%8E%E1%85%A5%E1%86%AB.001-1.jpeg?resize=1024%2C576&ssl=1",
+      "title": "리덕스 미들웨어를 직접 만들어보면 이해하기 쉽죠.",
+      "islike":"true",
+      "mylist":"true",
+      "category":"action"
+    },
+    {
+      "id": 2,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/11/%E1%84%80%E1%85%B5%E1%84%86%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5.jpg?w=612&ssl=1",
+      "category": "romance"
+    },
+    {
+      "id": 3,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2021/02/sweet.jpg?resize=691%2C1024&ssl=1",
+      "category": "action"
+    },
+    {
+      "id": 4,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/12/unnamed-1.jpg?w=346&ssl=1",
+      "category": "action"
+    },
+    {
+      "id": 5,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/11/%E1%84%87%E1%85%B3%E1%84%85%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B5%E1%86%BC%E1%84%87%E1%85%A2%E1%84%83%E1%85%B3.jpg?resize=736%2C1024&ssl=1",
+      "category": "action"
+    },
+    {
+      "id": 6,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/12/MV5BMTc1MjIyNDI3Nl5BMl5BanBnXkFtZTgwMjQ1OTI0NzM@._V1_.jpg?resize=691%2C1024&ssl=1",
+      "category": "romance"
+    },
+    {
+      "id": 7,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/11/%E1%84%8B%E1%85%A6%E1%84%86%E1%85%B5%E1%86%AF%E1%84%85%E1%85%B5%E1%84%91%E1%85%A1%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A6%E1%84%80%E1%85%A1%E1%84%83%E1%85%A1.png?resize=692%2C1024&ssl=1",
+      "category": "romance"
+    },
+    {
+      "id": 8,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2021/01/MV5BMTUzYTY4OTctNDg3NS00ZjY1LWE5Y2YtMTBiODU5OTViOTE0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg?w=707&ssl=1",
+      "category": "comedy"
+    },
+    {
+      "id": 9,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/12/MV5BNTBlZmE4YzItNTY5Mi00NmIxLTlhZTAtOWIxNjFlNTMzNmI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg?resize=691%2C1024&ssl=1",
+      "category": "comedy"
+    },
+    {
+      "id": 10,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/11/%E1%84%91%E1%85%B3%E1%84%85%E1%85%A6%E1%86%AB%E1%84%8C%E1%85%B3.jpg?w=512&ssl=1",
+      "category": "comedy"
+    },
+    {
+      "id": 11,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2020/12/unnamed.jpg?w=341&ssl=1",
+      "category": "action"
+    },
+    {
+      "id": 12,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2021/02/sweet.jpg?resize=691%2C1024&ssl=1",
+      "category": "romance"
+    },
+    {
+      "id": 13,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2021/02/sweet.jpg?resize=691%2C1024&ssl=1",
+      "category": "romance"
+    },
+    {
+      "id": 14,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2021/02/sweet.jpg?resize=691%2C1024&ssl=1",
+      "category": "action"
+    },
+    {
+      "id": 15,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2021/02/sweet.jpg?resize=691%2C1024&ssl=1",
+      "category": "romance"
+    },
+    {
+      "id": 16,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2021/02/sweet.jpg?resize=691%2C1024&ssl=1",
+      "category": "comedy"
+    },
+    {
+      "id": 17,
+      "imgUrl": "https://i0.wp.com/breakingcube.com/wp-content/uploads/2021/02/sweet.jpg?resize=691%2C1024&ssl=1",
+      "category": "comedy"
+    }
+  ]
+}

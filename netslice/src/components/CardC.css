@@ -1,0 +1,53 @@
+.cardC {
+    margin : 0 5rem 0 5rem;
+    display: flex;
+}
+
+.carousel{
+    width:90%;
+    
+}
+
+.hidden {
+    color:aqua;
+    font-weight: 600;
+    font-size: 0.5rem;
+    animation: fadein 0.4s;
+}
+
+.carouselWrapper{
+    width:90vw;
+    height:9rem;
+    overflow: hidden;
+    z-index: 3;
+    position : relative;
+}
+
+.left{
+    position:absolute;
+    left:0;
+    top:30%;
+    z-index: 6;
+}
+
+.left:hover{
+    background-color: white;
+    opacity: 0.5;
+    color:black
+}
+
+.right{
+    position:absolute;
+    right:0;
+    top:30%;
+    z-index: 6;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
