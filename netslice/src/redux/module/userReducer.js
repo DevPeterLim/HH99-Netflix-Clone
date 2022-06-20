@@ -104,17 +104,18 @@ export const loginDB = (payload) => {
                     password : payload.password
                 } 
             })
-            console.log(loginResp.hejaders.authorization)
+            console.log(loginResp.headers.authorization)
             console.log(loginResp)
             const accessToken = loginResp.headers.authorization // 확인 필요.split(" ")[1];
             setCookie('token', accessToken, {
                 path : "/", 
-                expires : "after1m" // test 후 update 필요
+                expires : "after180m" // test 후 update 필요
             })
             dispatch(login(true));
             alert('로그인 성공!')
         } catch (error) {
             alert('로그인 실패');
+            console.log(error);
         } finally {
             dispatch(loading(false))
         }

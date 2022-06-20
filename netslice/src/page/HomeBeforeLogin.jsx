@@ -11,7 +11,7 @@ const HomeBeforeLogin = () => {
     const submitHandler = () =>{
         console.log(emailRef.current.value)
         const email = emailRef?.current?.value
-        dispatch(idCheckDB())    
+        dispatch(idCheckDB({email}))    
     }
     return (
         <>
