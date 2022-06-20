@@ -3,7 +3,7 @@ import './App.css';
 import HomeBeforeLogin from './page/HomeBeforeLogin';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Signup from './page/Signup';
-import Login from './page/login';
+import Login from './page/Login';
 
 
 function App() {
