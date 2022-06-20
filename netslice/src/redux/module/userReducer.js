@@ -5,6 +5,7 @@ import { setCookie } from "../../Cookie";
 //initState
 const initState = {
     email : "",
+    nickname : "", // 광민님이랑 논의 필요
     idCheck: false,
     loading: false,
     error: null,
@@ -88,7 +89,7 @@ export const signupDB = (payload) => {
                 alert("회원가입 성공!");}}
         catch (error) {
             console.log(error);
-            alert("회원가입 실패 넷슬이스에 문의하세요")}
+            alert("회원가입 실패 넷슬라이스에 문의하세요")}
         finally {
             dispatch(loading(false))}}}
 
