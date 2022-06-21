@@ -16,9 +16,9 @@ const Signup = () => {
         console.log(emailRef, pwRef);
         dispatch(signupDB({
             email: emailRef.current.value,
-            nickname: "nickname12",
+            // nickname: "nickname12",
             password: pwRef.current.value,
-            passwordCheck: pwRef.current.value
+            // passwordCheck: pwRef.current.value
         }))
     }
 

@@ -1,13 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components"
 import netsliceLogo from "../netsliceLogo.png"
 import { idCheckDB } from "../redux/module/userReducer";
 import { useDispatch } from "react-redux";
+import KorLarge from "../images/KorLarge.jpg";
 
 
 const HomeBeforeLogin = () => {
+    const [singIn, setSignIn] = useState(false); // 수정 필요
     const emailRef = useRef(null);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const submitHandler = () =>{
         console.log(emailRef.current.value)
@@ -19,17 +21,32 @@ const HomeBeforeLogin = () => {
     return (
         <>
             <MainJumbotron>
-                <img src={netsliceLogo}/>
-                <select>
-                    <option>한국어</option>
-                    <option>English</option>
-                </select>
-                <button>로그인</button>
-                <div>영화와 시리즈를 무제한으로.
-                    다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.
-                    시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</div>
-                <input className="emailCheck" type={'email'} ref={emailRef} placeholder={"email"}></input>
-                <button onClick={submitHandler}>시작하기</button>
+                <MainGradient>
+                {/* <img src={KorLarge}/> */}
+                <LandingHeaders>
+                    <Logo>
+                        <img src={netsliceLogo}/>
+                    </Logo>
+                        <LangLoginBtnWrap>
+                            <select>
+                                <option>한국어</option>
+                                <option>English</option>
+                            </select>
+                        <LoginBtn>로그인</LoginBtn>
+                        </LangLoginBtnWrap>
+                </LandingHeaders>
+                <Landingbody>
+                    <LandingTitle>영화와 시리즈를 무제한으로.</LandingTitle>
+                    <LandingSubtitle>다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.</LandingSubtitle>
+                    <LandingSubText>시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</LandingSubText>
+                    <LandingFormDiv>
+                        <form>
+                            <LandingFormInput className="emailCheck" type={'email'} ref={emailRef} placeholder={"이메일 주소"}></LandingFormInput>
+                            <LandingFormBtn onClick={submitHandler}>시작하기</LandingFormBtn>
+                        </form>
+                    </LandingFormDiv>
+                </Landingbody>
+                </MainGradient>
             </MainJumbotron>
         </>
     )
@@ -37,7 +54,115 @@ const HomeBeforeLogin = () => {
 
 export const MainJumbotron = styled.div`
     color: white;
+    background: url(${KorLarge}) center no-repeat;
+    background-size: cover;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 100vh;
+`
+
+export const MainGradient = styled.div`
+    width: 100%;
+    z-index: 1;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+`
+
+export const LandingHeaders = styled.span`
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 1000;
+    min-width: 600px;
+    /* background-color: red; */
+`
+export const Logo = styled.span`
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 10px;
+    background-image: url(${netsliceLogo});
+    background-repeat: no-repeat;
+    z-index: 100;
+`
+export const LangLoginBtnWrap = styled.div`
+    /* position: fixed; */
+    right: 20px;
+    top: 20px;
+    min-width: 200px;
+    margin-right: 20px;
+    margin-top: 10px;
+    /* background-color: #e50914; */
+`
+
+export const LoginBtn = styled.a`
+    background-color: #e50914;
+    padding: 7px 17px;
+    border-radius: 5px;
+    margin-left: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+`
+
+export const Landingbody = styled.div`    
+    position: relative;
+    top: 30%;
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 20px;
+    z-index: 200;
+`
+export const LandingTitle = styled.h2`
+    font-size: 4rem;
+    margin-bottom: 30px;
+`
+export const LandingSubtitle = styled.h5`
+    font-size: 1.625rem;
+`
+export const LandingSubText = styled.p`
+    font-size: 1.2rem;
+`
+export const LandingFormDiv = styled.div`
+    padding: 10px;
+    margin: auto;
+    /* position: relative; */
+    /* background-color: red; */
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+`
+export const LandingFormInput = styled.input`
+    outline-width: 0;
+    height:60px;
+    width: 30%;
+    max-width: 600px;
+    min-width: 450px;
+    border: none;
+    margin: 0 auto;
+    align-self: center;
+`
+export const LandingFormBtn = styled.button`
+    align-self: center;
+    margin: 0;
+    padding: 16px 20px;
+    height: 60px;
+    min-width: 74px;
+    font-size: 1.625rem;
+    color: #fff;
+    background-color: #e50914;
+    border: none;
+    cursor: pointer;
 ` 
+
 
 
 export default HomeBeforeLogin;

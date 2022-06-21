@@ -73,7 +73,7 @@ export const idCheckDB = (payload) =>{
             alert(error)}
         finally {
             console.log("finally finished")
-            dispatch(loading(false))}}} 
+            dispatch(loading(false))}}}
 
 export const signupDB = (payload) => {
     console.log(payload);
