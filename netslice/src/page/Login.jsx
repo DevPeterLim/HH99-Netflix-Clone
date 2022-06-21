@@ -2,7 +2,9 @@ import React from "react";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { loginDB } from "../redux/module/userReducer";
-import netsliceLogo from "/Users/peterlim/Documents/git_folder/netflix_clone/netslice/src/netsliceLogo.png"
+import netsliceLogo from "../netsliceLogo.png"
+import styled from "styled-components"
+
 
 
 const Login = ()=> {
@@ -20,14 +22,20 @@ const Login = ()=> {
     return (
         <>
         <img src={netsliceLogo}/>
-        <h2>로그인</h2>
-        <input type={'email'} placeholder={"이메일 주소 또는 전화번호"} ref={emailRef}></input>
-        <input type={'password'} placeholder={"비밀번호"} ref={pwRef}></input>
-        <button onClick={loginHandler}>로그인</button>
-        <input type={'checkbox'} id={"rememberMe"}/>
-        <label htmlFor={'rememberMe'}>로그인 정보저장</label>
+        <LoginWrap>
+            <h2>로그인</h2>
+            <input type={'email'} placeholder={"이메일 주소 또는 전화번호"} ref={emailRef}></input>
+            <input type={'password'} placeholder={"비밀번호"} ref={pwRef}></input>
+            <button onClick={loginHandler}>로그인</button>
+            <input type={'checkbox'} id={"rememberMe"}/>
+            <label htmlFor={'rememberMe'}>로그인 정보저장</label>
+        </LoginWrap>
         </>
     )
 }
+
+export const LoginWrap = styled.div`
+    color: white;
+` 
 
 export default Login;

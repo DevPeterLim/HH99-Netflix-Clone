@@ -11,6 +11,10 @@ const apis = {
     // }),
     // getRank : ()=>api.get(`/api/best`),
     // deleteComments : (payload)=>api.delete(`/api/detail/${payload.board_id}/reply`)
+
+    getMovies : () => api.get(`/posts`)
+    
+
 }
 
 export default apis;

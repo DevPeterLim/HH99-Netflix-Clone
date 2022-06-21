@@ -1,21 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-import HomeBeforeLogin from './page/HomeBeforeLogin';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import Main from './page/main';
+import MyList from './page/myList';
 import Signup from './page/Signup';
 import Login from './page/Login';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import HomeBeforeLogin from './page/HomeBeforeLogin';
+
 
 
 function App() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route path='/' element={<HomeBeforeLogin/>} />
-          <Route path='/signup' element={<Signup/>} />
-          <Route path='/login' element={<Login/>} />
-      </Routes>
+  
+  const queryClient = new QueryClient();
 
-    </div>
+  return (
+    <QueryClientProvider client={queryClient}>
+    <Routes>
+      <Route path='/' element={<HomeBeforeLogin/>} />
+      <Route path='/signup' element={<Signup/>} />
+      <Route path='/login' element={<Login/>} />
+      <Route path = "/main" element = {<Main/>} />
+      <Route path = "/mylist" element = {<MyList/>} />
+    </Routes>
+    </QueryClientProvider>
   );
 }
 
