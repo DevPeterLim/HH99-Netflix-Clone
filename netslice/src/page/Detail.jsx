@@ -71,7 +71,6 @@ const Detail = () => {
                     </StInBox>
                 </StOutBox>
             </StContent>
-        
     </StBox>
   )
 }

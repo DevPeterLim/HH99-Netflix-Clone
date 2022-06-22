@@ -9,7 +9,6 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import HomeBeforeLogin from './page/HomeBeforeLogin';
 
 
-
 function App() {
   
   const queryClient = new QueryClient();
@@ -23,7 +22,6 @@ function App() {
       <Route path = "/main" element = {<Main/>} />
       <Route path = "/detail/:id" element = {<Detail/>} />
       <Route path = "/mylist" element = {<MyList/>} />
-      {/* <Route path = "/main/:id" element = {}/> */}
     </Routes>
     </QueryClientProvider>
   );

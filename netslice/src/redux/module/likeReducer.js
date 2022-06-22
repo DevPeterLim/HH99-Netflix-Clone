@@ -11,3 +11,11 @@ export const putList = (payload) =>{
         const {data} = await apis.putList(payload);
     }
 }
+
+const likeReducer = () => {
+  return (
+    <div>likeReducer</div>
+  )
+}
+
+export default likeReducer

@@ -6,11 +6,13 @@ import userReducer from "./module/userReducer";
 import { combineReducers } from "redux";
 import detailReducer from "./module/detailReducer";
 import searchReducer from './module/searchReducer'
+import likeReducer from './module/likeReducer'
 
 const rootReducer = combineReducers({
     userReducer,
     detailReducer,
     searchReducer,
+    likeReducer,
 })
 
 const middlewares = [thunk];
