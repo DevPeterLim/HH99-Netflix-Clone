@@ -11,10 +11,11 @@ const apis = {
     // }),
     // getRank : ()=>api.get(`/api/best`),
     // deleteComments : (payload)=>api.delete(`/api/detail/${payload.board_id}/reply`)
-
-    getMovies : () => api.get(`/posts`)
-    
-
+    getMovies : () => api.get(`/api/movies`),
+    getSearch : ({search}) =>api.get(`/api/search?title=${search}`),
+    getVideos : ()=> api.get(`/api/movieUrl`),
+    postLike : ({movieId})=> api.post(`/api/movie/${movieId}/like`),
+    deleteLike : ()=> api.delete(`/`),
 }
 
-export default apis;
+export default apis; 

@@ -4,6 +4,7 @@ import Main from './page/main';
 import MyList from './page/myList';
 import Signup from './page/Signup';
 import Login from './page/Login';
+import Detail from './page/Detail';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import HomeBeforeLogin from './page/HomeBeforeLogin';
 
@@ -20,7 +21,9 @@ function App() {
       <Route path='/signup' element={<Signup/>} />
       <Route path='/login' element={<Login/>} />
       <Route path = "/main" element = {<Main/>} />
+      <Route path = "/detail/:id" element = {<Detail/>} />
       <Route path = "/mylist" element = {<MyList/>} />
+      {/* <Route path = "/main/:id" element = {}/> */}
     </Routes>
     </QueryClientProvider>
   );

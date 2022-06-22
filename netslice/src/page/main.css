@@ -1,0 +1,17 @@
+.main{
+    position: relative;
+}
+
+.head{
+    position: fixed;
+    z-index: 1000;
+}
+
+.body{
+    position: absolute;
+    z-index: 2;
+} 
+
+.video{
+    position : fixed;    
+}
