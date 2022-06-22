@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const HomeBeforeLogin = () => {
-    const idCheckInfo = useSelector(store => store.idCheck);
+    const idCheckInfo = useSelector(store => store.userReducer.idCheck);
     const emailRef = useRef(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();

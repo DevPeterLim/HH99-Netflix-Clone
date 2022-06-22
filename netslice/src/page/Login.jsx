@@ -13,13 +13,13 @@ const Login = ()=> {
     const navigate = useNavigate();
     useEffect(()=>{
         dispatch(idCheck(null))})
-    const mailInfo = useSelector(store => store?.email);
-    const isLogin = useSelector(store => store?.isLogin)
+    const mailInfo = useSelector(store => store?.userReducer.email);
+    const isLogin = useSelector(store => store?.userReducer.isLogin)
     useEffect(() => { 
         ( isLogin === true ) ? navigate('/main') : navigate('/login')
       }, [isLogin]);
 
-    const [value, setValue] = useState(mailInfo.email);
+    const [value, setValue] = useState(mailInfo?.email); 
 
         // ( userInfo === undefined ) ? console.log(userInfo) : (userInfo === true) ? navigate('/signup') : navigate('/login')
     const dispatch = useDispatch();
