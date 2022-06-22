@@ -6,13 +6,19 @@ import { mailtemp } from "../redux/module/userReducer";
 import { useDispatch, useSelector } from "react-redux";
 import KorLarge from "../images/KorLarge.jpg";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../Cookie";
 
 
 const HomeBeforeLogin = () => {
+    const navigate = useNavigate();
+    const accessToken = getCookie('token');
+    useEffect(()=>{
+        if(accessToken){
+            navigate('/main')}
+        })
     const idCheckInfo = useSelector(store => store.userReducer.idCheck);
     const emailRef = useRef(null);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -43,7 +49,6 @@ const HomeBeforeLogin = () => {
         <>
             <MainJumbotron>
                 <MainGradient>
-                {/* <img src={KorLarge}/> */}
                 <LandingHeaders>
                     <Logo>
                         <img src={netsliceLogo}/>
@@ -61,10 +66,10 @@ const HomeBeforeLogin = () => {
                     <LandingSubtitle>다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.</LandingSubtitle>
                     <LandingSubText>시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</LandingSubText>
                     <LandingFormDiv>
-                        <form>
+                        <LandingForm>
                             <LandingFormInput className="emailCheck" type={'email'} ref={emailRef} placeholder={"이메일 주소"}></LandingFormInput>
                             <LandingFormBtn onClick={submitHandler}>시작하기</LandingFormBtn>
-                        </form>
+                        </LandingForm>
                     </LandingFormDiv>
                 </Landingbody>
                 </MainGradient>
@@ -161,6 +166,13 @@ export const LandingFormDiv = styled.div`
     align-items: center;
     justify-content: center;
 `
+
+const LandingForm = styled.form`
+    display:flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const LandingFormInput = styled.input`
     outline-width: 0;
     height:60px;
@@ -170,9 +182,11 @@ export const LandingFormInput = styled.input`
     border: none;
     margin: 0 auto;
     align-self: center;
+    justify-items: center;
+    align-items: center;
 `
 export const LandingFormBtn = styled.button`
-    align-self: center;
+    align-items: center;
     margin: 0;
     padding: 16px 20px;
     height: 60px;

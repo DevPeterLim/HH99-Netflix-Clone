@@ -5,15 +5,24 @@ import netsliceLogo from "../netsliceLogo.png"
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { idCheck } from "../redux/module/userReducer";
+import { getCookie } from "../Cookie";
+import { LandingHeaders, Logo, MainGradient, MainJumbotron } from "./HomeBeforeLogin";
+import { LoginBtn, LoginFooter, LoginFooterAtag, LoginFooterDiv, LoginForm, LoginH1, LoginInput, LoginUnderHelpSpan, LoginUnderInput, LoginUnderLabel, LoginUnderWrap, LoginWrap } from "./Login";
 
 
 const Signup = () => {
+    const navigate = useNavigate();
+    const accessToken = getCookie('token');
+    // useEffect(()=>{
+    //     if(accessToken){
+    //         navigate('/main')
+    //     }});
+
     useEffect(()=>{
         dispatch(idCheck(null))})
     const emailRef = useRef(null);
     const pwRef = useRef(null);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const signupHandler = () =>{
         console.log(emailRef, pwRef);
@@ -27,27 +36,33 @@ const Signup = () => {
 
     return (
         <>
-            <img src={netsliceLogo}/>
-            <SignupWrap>
-                <select>
-                    <option>한국어</option>
-                    <option>English</option>
-                </select>
-                <button onClick={navigate('/login')}>로그인</button>
-                <div>
-                                1/3단계
-                    비밀번호를 설정해 멤버십을 시작하세요.
-                    몇 단계만 더 거치면 넷플릭스 가입 완료!
-                    복잡한 단계는 모두 없앴습니다.
-                </div>
-                <input type={"email"} ref={emailRef}></input><br/>
-                <input type={"password"} ref={pwRef}></input><br/>
-                <button onClick={signupHandler}>동의하고 계속</button><br/>
-                <input type={"checkbox"} id={"personalData"}></input>
-                <label htmlFor="personalData">예, 저는 개인정보 처리방침에 따른 개인정보 수집 및 활용에 동의합니다.</label><br/>
-                <input type={"checkbox"} id={"noti"}></input>
-                <label htmlFor="noti">예, 넷플릭스 특별 할인 알림 이메일을 보내주세요. (선택사항)</label> 
-            </SignupWrap>
+        <MainJumbotron>
+            <MainGradient>
+                <LandingHeaders>
+                    <Logo onClick={()=>navigate('/')} style={{cursor:"pointer"}}>
+                    <img src={netsliceLogo}/>
+                    </Logo>
+                </LandingHeaders>
+                <LoginWrap>
+                <LoginForm>
+                    <LoginH1>회원가입</LoginH1>
+                    <LoginInput type={"email"} ref={emailRef}></LoginInput><br/>
+                    <LoginInput type={"password"} ref={pwRef}></LoginInput><br/>
+                    <LoginBtn onClick={signupHandler}>동의하고 계속</LoginBtn>
+                    <LoginUnderWrap>
+                        <LoginUnderInput type={"checkbox"} id={"personalData"}></LoginUnderInput>
+                        <LoginUnderLabel htmlFor={'rememberMe'} style={{fontSize:"13px"}}>로그인 정보저장</LoginUnderLabel>
+                        <LoginUnderHelpSpan>도움이 필요하신가요?</LoginUnderHelpSpan>
+                    </LoginUnderWrap>
+                </LoginForm>
+                    <LoginFooter>
+                        <LoginFooterDiv>Netflix 회원이신가요?</LoginFooterDiv>
+                        <LoginFooterAtag onClick={()=>navigate('/login')}>로그인 하러가기</LoginFooterAtag>
+                    </LoginFooter>
+                </LoginWrap>
+            </MainGradient>
+        </MainJumbotron>
+        
         </>
     )
 }
