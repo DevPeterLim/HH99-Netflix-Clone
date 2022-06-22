@@ -1,23 +1,44 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components"
 import netsliceLogo from "../netsliceLogo.png"
-import { idCheckDB } from "../redux/module/userReducer";
-import { useDispatch } from "react-redux";
+import { idCheck, idCheckDB } from "../redux/module/userReducer";
+import { mailtemp } from "../redux/module/userReducer";
+import { useDispatch, useSelector } from "react-redux";
 import KorLarge from "../images/KorLarge.jpg";
+import { useNavigate } from "react-router-dom";
 
 
 const HomeBeforeLogin = () => {
-    const [singIn, setSignIn] = useState(false); // 수정 필요
+    const idCheckInfo = useSelector(store => store.userReducer.idCheck);
     const emailRef = useRef(null);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const submitHandler = () =>{
+    const submitHandler = (e) => {
+        e.preventDefault();
         console.log(emailRef.current.value)
         const email = emailRef?.current?.value
         dispatch(idCheckDB({
-            email: email
-        }))    
+            email: email}))
+        dispatch(mailtemp({
+            email: email}))
     }
+
+    useEffect(() => {
+        console.log(idCheckInfo);
+        if (idCheckInfo === undefined){
+            console.log(idCheckInfo)
+        } else if(idCheckInfo === true){
+            navigate('/signup')
+            console.log(idCheckInfo)
+        } else if(idCheckInfo === false){
+            navigate('/login')
+            console.log(idCheckInfo)
+        }
+        // ( idCheckInfo === undefined ) ? console.log(idCheckInfo) : (idCheckInfo === true) ? navigate('/signup') : navigate('/login')
+      }, [idCheckInfo]);
+
+
     return (
         <>
             <MainJumbotron>
@@ -32,7 +53,7 @@ const HomeBeforeLogin = () => {
                                 <option>한국어</option>
                                 <option>English</option>
                             </select>
-                        <LoginBtn>로그인</LoginBtn>
+                        <LoginBtn onClick={()=>navigate('login')}>로그인</LoginBtn>
                         </LangLoginBtnWrap>
                 </LandingHeaders>
                 <Landingbody>
@@ -40,10 +61,10 @@ const HomeBeforeLogin = () => {
                     <LandingSubtitle>다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.</LandingSubtitle>
                     <LandingSubText>시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</LandingSubText>
                     <LandingFormDiv>
-                        <form>
+                        <LandingForm>
                             <LandingFormInput className="emailCheck" type={'email'} ref={emailRef} placeholder={"이메일 주소"}></LandingFormInput>
                             <LandingFormBtn onClick={submitHandler}>시작하기</LandingFormBtn>
-                        </form>
+                        </LandingForm>
                     </LandingFormDiv>
                 </Landingbody>
                 </MainGradient>
@@ -136,10 +157,16 @@ export const LandingFormDiv = styled.div`
     /* position: relative; */
     /* background-color: red; */
     display:flex;
-    flex-direction:row;
     align-items: center;
     justify-content: center;
 `
+
+const LandingForm = styled.form`
+    display:flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const LandingFormInput = styled.input`
     outline-width: 0;
     height:60px;
@@ -148,11 +175,9 @@ export const LandingFormInput = styled.input`
     min-width: 450px;
     border: none;
     margin: 0 auto;
-    align-self: center;
 `
 export const LandingFormBtn = styled.button`
-    align-self: center;
-    margin: 0;
+    margin: 0 auto;
     padding: 16px 20px;
     height: 60px;
     min-width: 74px;

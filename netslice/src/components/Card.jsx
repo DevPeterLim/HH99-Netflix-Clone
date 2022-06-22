@@ -15,12 +15,6 @@ const Card = (props) => {
   //console.log(props)
   return (
     <React.Fragment>
-      {/* <Modal
-        img = {props.imgUrl}
-        genre = {props.category}
-        open = {modalOpen}
-        close={closeModal}
-        /> */}
       <div className='box' onClick={openModal}>
         <img className='imgBox' src={props?.imgUrl}/>
       </div>

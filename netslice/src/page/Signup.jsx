@@ -4,9 +4,12 @@ import { signupDB } from "../redux/module/userReducer";
 import netsliceLogo from "../netsliceLogo.png"
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
+import { idCheck } from "../redux/module/userReducer";
 
 
 const Signup = () => {
+    useEffect(()=>{
+        dispatch(idCheck(null))})
     const emailRef = useRef(null);
     const pwRef = useRef(null);
     const dispatch = useDispatch();

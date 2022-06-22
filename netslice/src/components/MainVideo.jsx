@@ -29,7 +29,7 @@ const StVideos = styled.div`
     justify-content: center;
     margin : 4rem 0 0 0;
     width: 100vw;
-    height : 75vh;
+    height : 70vh;
     color:white;
     z-index: 2;
     overflow: visible;
