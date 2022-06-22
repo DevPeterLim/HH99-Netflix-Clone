@@ -1,23 +1,44 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components"
 import netsliceLogo from "../netsliceLogo.png"
-import { idCheckDB } from "../redux/module/userReducer";
-import { useDispatch } from "react-redux";
+import { idCheck, idCheckDB } from "../redux/module/userReducer";
+import { mailtemp } from "../redux/module/userReducer";
+import { useDispatch, useSelector } from "react-redux";
 import KorLarge from "../images/KorLarge.jpg";
+import { useNavigate } from "react-router-dom";
 
 
 const HomeBeforeLogin = () => {
-    const [singIn, setSignIn] = useState(false); // 수정 필요
+    const idCheckInfo = useSelector(store => store.idCheck);
     const emailRef = useRef(null);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const submitHandler = () =>{
+    const submitHandler = (e) => {
+        e.preventDefault();
         console.log(emailRef.current.value)
         const email = emailRef?.current?.value
         dispatch(idCheckDB({
-            email: email
-        }))    
+            email: email}))
+        dispatch(mailtemp({
+            email: email}))
     }
+
+    useEffect(() => {
+        console.log(idCheckInfo);
+        if (idCheckInfo === undefined){
+            console.log(idCheckInfo)
+        } else if(idCheckInfo === true){
+            navigate('/signup')
+            console.log(idCheckInfo)
+        } else if(idCheckInfo === false){
+            navigate('/login')
+            console.log(idCheckInfo)
+        }
+        // ( idCheckInfo === undefined ) ? console.log(idCheckInfo) : (idCheckInfo === true) ? navigate('/signup') : navigate('/login')
+      }, [idCheckInfo]);
+
+
     return (
         <>
             <MainJumbotron>
@@ -32,7 +53,7 @@ const HomeBeforeLogin = () => {
                                 <option>한국어</option>
                                 <option>English</option>
                             </select>
-                        <LoginBtn>로그인</LoginBtn>
+                        <LoginBtn onClick={()=>navigate('login')}>로그인</LoginBtn>
                         </LangLoginBtnWrap>
                 </LandingHeaders>
                 <Landingbody>
