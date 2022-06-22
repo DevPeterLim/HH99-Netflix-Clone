@@ -13,9 +13,9 @@ const apis = {
     // deleteComments : (payload)=>api.delete(`/api/detail/${payload.board_id}/reply`)
     getMovies : () => api.get(`/api/movies`),
     getSearch : ({search}) =>api.get(`/api/search?title=${search}`),
-    getVideos : ()=> api.get(`/api/movieUrl`),
-    postLike : ({movieId})=> api.post(`/api/movie/${movieId}/like`),
-    deleteLike : ()=> api.delete(`/`),
+    putLike : ({movieId})=> api.put(`/api/movie/${movieId}/like`),
+    putList : ({movieId})=> api.put(`/api/movie/${movieId}/list`),
+    getDetail : ({movieId})=> api.get(`/api/movie/${movieId}`)
 }
 
 export default apis; 

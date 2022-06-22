@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import logo from '../img/logo.png';
 import {useNavigate} from 'react-router-dom'
 import { useState } from 'react';
 import { useRef } from 'react';
-import Search from './SearchModal';
 import apis from '../api/main';
 import { useGetSearch } from '../Hooks/useGetSearch';
 import netslice from '../netsliceLogo.png'
 import searchLogo from '../searchLogo.png'
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
 
     const navigate = useNavigate();
     const [isSearching,setIsSearching] = useState(0);
+    const dispatch = useDispatch();
   //  const [srch,setSrch] = useState("");
     const search = useRef(null);
     const moveHome = () => {
@@ -30,8 +31,18 @@ const Header = () => {
         }
         else{
             setIsSearching(isSearching-1)
-            
         }
+    }
+
+    useEffect(()=>{
+        
+    },[])
+
+    const putsearch=()=>{
+        dispatch()
+
+
+
     }
    
 
@@ -49,7 +60,7 @@ const Header = () => {
                 <StSearchBox click={isSearching}>
                     <StSearchImg click={isSearching} src={searchLogo} onClick={searching}/>
                     <StSearchInput click={isSearching} placeholder='제목으로 검색' ref ={search}></StSearchInput>
-                    <StButton></StButton>
+                    <StButton onClick={putsearch}></StButton>
                 </StSearchBox>
             </StSBox>
             <StButtonR onClick={moveMyList}>마이페이지</StButtonR>

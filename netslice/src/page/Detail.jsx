@@ -1,26 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useGetMovie } from '../Hooks/useGetMovie'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux/es/exports'
+import { useGetDetail } from '../Hooks/useGetDetail'
 import Header from '../components/Header'
 import apis from '../api/main'
+import { useGetLike } from '../Hooks/useGetLike'
+import { putLike, putList } from '../redux/module/likeReducer'
 
 
 const Detail = () => {
 
-    const {data} = useGetMovie();
     const movieId = useParams().id;
-    const info = data?.movie.find(value=>movieId ==value.id )
-    
-    const postLike=()=>{
-        return async function(){
-            const postLike = await apis.postLike()
-        }
+    const dispatch = useDispatch();
+    const {data:detail} =useGetDetail({movieId});
+    console.log(detail?.isList);
+    const info = detail?.detail
+    // const islike = data?.likes[Number(movieId)-1];
+    const islike = detail?.isLike;
+    const islist = detail?.isList;
+
+   
+    const like=() => {
+        dispatch(putLike({
+            like : true,
+            movieId : info?.id,
+        }))
     }
 
-    
+    const likex=() => {
+        dispatch(putLike({
+            like : false
+        }))
+    }
 
+    const list = () =>{
+        dispatch(putList({
+            like : true
+        }))
+    }
+
+    const listx =() =>{
+        dispatch(putList({
+            like : false
+        }))
+    }
 
   return (
     <StBox>
@@ -29,7 +54,9 @@ const Detail = () => {
                 <StVideo muted autoPlay loop src={info?.videoUrl}></StVideo>
                 <StTitle>{info?.title}</StTitle>
                 <StLikeBox>
-                    <StLike onClick={postLike}/>
+                    {/* <StLike onClick={like}/> */}
+                     {islike?<StLike onClick={likex}>좋아요 취소</StLike>:<StLike onClick={like}>좋아요</StLike>}
+                     {islist?<StLike onClick={listx}>찜하기 취소</StLike>:<StLike onClick={list}>찜하기</StLike>}
                 </StLikeBox>
                 <StOutBox>
                     <StInBox>
@@ -50,7 +77,7 @@ const Detail = () => {
 }
 
 const StLike = styled.button`
-    width :1rem;
+    width :10rem;
     height:1rem;
 `;
 

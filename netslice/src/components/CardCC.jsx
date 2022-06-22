@@ -7,7 +7,7 @@ import CardC from './CardC';
 const CardCC = () => {
 
     const {data} = useGetMovie();
-    const {data2} = useGetVideo();
+  
    
     //console.log(data[0].category);
     const action = data?.movie.filter(value => value.category=="액션");
@@ -16,7 +16,8 @@ const CardCC = () => {
     const horror = data?.movie.filter(value => value.category=="공포");
     const sf = data?.movie.filter(value => value.category=="SF");
     const drama = data?.movie.filter(value => value.category=="드라마");
-    
+
+
     return (
         <StCardCC>
         <CardC props={action}/>

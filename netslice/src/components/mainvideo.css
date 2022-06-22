@@ -1,0 +1,17 @@
+.fade {
+    width: 100vw;
+    
+    height:5rem;
+    
+}
+
+
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
