@@ -1,12 +1,18 @@
 import React from 'react'
 import styled from 'styled-components';
-import { useGetMyList } from '../Hooks/useGetMyList'
+import { useNavigate } from 'react-router-dom';
 
 const List = (props) => {
 
-    const {data} = useGetMyList();
+    const navigate = useNavigate();
+
+  const openModal = () => {
+    navigate(`/detail/${props?.id}`);
+  };
+
+
   return (
-    <StImgBox >
+    <StImgBox onClick={openModal}>
         <StImg src={props?.imgUrl}/>
     </StImgBox>
   )
@@ -20,8 +26,9 @@ const StImg = styled.img`
 
 
 const StImgBox = styled.div`
-    height: 50rem;
-    margin : 0 1rem 0 1rem;
+    height: 20rem;
+    margin : 1rem 1rem 1rem 1rem;
+    cursor: pointer;
 `;
 
 export default List

@@ -54,11 +54,15 @@ const MyPage = ()=> {
             setValue(e.target.value);
         }
 
+        const gohome  = ()=>{
+            navigate('/main');
+        }
+
     return (
         <>
         <MyPageStyle>
             <LandingHeaders>
-                <Logo>
+                <Logo onClick={gohome}>
                     <img src={netsliceLogo}/>
                 </Logo>
             </LandingHeaders>

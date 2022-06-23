@@ -9,7 +9,6 @@ import {useNavigate} from 'react-router-dom'
 import { putLike, putList } from '../redux/module/likeReducer'
 import { useQueryClient } from 'react-query'
 
-
 const Detail = () => {
 
     const queryClient = useQueryClient(); 

@@ -17,18 +17,12 @@ export function Close(payload){
 }
 
 
-const patchLike = () =>{
-    
-}
-
 function detailReducer(state = initialState,action){
     switch(action.type)
     {
         case SEND:return{...state,info:[action.payload]};
         case CLOSE:return{...state,close:action.payload};
         default:return{...state};
-
-
     }
 }
 
