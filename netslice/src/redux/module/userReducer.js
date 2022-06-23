@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { setCookie } from "../../Cookie";
+import { getCookie, setCookie } from "../../Cookie";
+
 
 //initState
 const initState = {
@@ -147,14 +148,17 @@ export const ChangeNickImgDB = (payload) => {
     return async function(dispatch) {
         dispatch(loading(true));
         try {
+            console.log(payload.accessToken)
             const nickImgResp = await axios ({
                 method : "patch",
                 url : 'http://15.164.50.132:8000/user/mypage',
                 data : {
                     userImg: payload.userImg,
-                    nickname: payload.nickName
+                    nickname: payload.nickname
+                },
+                headers:{
+                    Authorization: `${payload.accessToken}`
                 }
-                // Bearer token 확인필요
             })
             console.log(nickImgResp)
             if (nickImgResp.status === 200) {
@@ -179,12 +183,64 @@ export const changePwDB = (payload) => {
             const pwChangeResp = await axios ({
                 method: "post",
                 url : 'http://15.164.50.132:8000/user/emailAuth',
-                data : {} // post 인데 data가 없나요?
+                // data : {} // post 인데 data가 없나요?
+                headers:{
+                    Authorization: `${payload.accessToken}`
+                }
             })
             console.log(pwChangeResp)
             if (pwChangeResp.status === 200){
                 alert("메일 발송됨")
             }
+        } catch (error){
+            console.log(error)
+        } finally {
+            dispatch(loading(false))
+        }
+    }
+}
+
+export const pwCertDB = (payload) => {
+    return async function(dispatch) {
+        dispatch(loading(true));
+        try{
+            const pwCertResp = await axios ({
+                method: "post",
+                url : 'http://15.164.50.132:8000/user/checkEmailAuth',
+                data: {
+                    emailAuth : payload.emailAuth
+                },
+                headers:{
+                    Authorization: `${payload.accessToken}`
+                }})
+            console.log(pwCertResp)
+            if (pwCertResp.status === 200){
+                alert("확인")
+            }
+        } catch (error){
+            console.log(error)
+        } finally {
+            dispatch(loading(false))
+        }
+    }
+}
+export const pwChangeDB = (payload) => {
+    return async function(dispatch) {
+        dispatch(loading(true));
+        try{
+            const pwChangeResp = await axios ({
+                method: "patch",
+                url: "http://15.164.50.132:8000/user/changePassword",
+                data:{
+                    password: payload.password
+                },
+                headers:{
+                    Authorization: `${payload.accessToken}`
+                }})
+                console.log(pwChangeResp)
+                if (pwChangeResp.status === 200){
+                    alert("변경됨")
+                }
         } catch (error){
             console.log(error)
         } finally {

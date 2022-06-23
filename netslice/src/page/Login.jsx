@@ -13,15 +13,17 @@ const Login = ()=> {
     const navigate = useNavigate();
     const accessToken = getCookie('token');
     useEffect(()=>{
+        console.log("언제?")
         if(accessToken){
             navigate('/main')
     } dispatch(idCheck(null))})
         
     const mailInfo = useSelector(store => store?.userReducer.email);
     const isLogin = useSelector(store => store?.userReducer.isLogin)
-    useEffect(() => { 
-        ( isLogin === true ) ? navigate('/main') : navigate('/login')
-      }, [isLogin]);
+    
+    // useEffect(() => { 
+    //     ( isLogin === true ) ? navigate('/main') : navigate('/login')
+    //   }, [isLogin]);
 
     const [value, setValue] = useState(mailInfo?.email); 
 

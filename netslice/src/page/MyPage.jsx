@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ChangeNickImgDB, changePwDB } from "../redux/module/userReducer";
 import { LandingHeaders, Logo } from "./HomeBeforeLogin";
+import { getCookie } from "../Cookie";
 
 
 
 const MyPage = ()=> {
+        const accessToken = getCookie('token');
         const initNick = useSelector(store=>store.userReducer?.nickname)
         // const initImg = useSelector(store=>store.userReducer?.userImg)
         const [value, setValue] = useState(initNick);
@@ -27,11 +29,13 @@ const MyPage = ()=> {
         const navigate = useNavigate();
 
         const pwChangeHandler = () =>{
-            dispatch(changePwDB())
+            dispatch(changePwDB({
+                accessToken
+            }))
             alert("Message 메세지가 발송됨")
             navigate('/PwChange')
         }
-        
+
         let count = 0;
         let list = [mypage_profile, mypage_profile1,mypage_profile2, mypage_profile3]
         const imgChangeHandler = () =>{
@@ -42,18 +46,20 @@ const MyPage = ()=> {
         }
         const saveHandler = (e) =>{
             e.preventDefault();
-            alert("변경된 내용을 저장하시겠습니까?")
             console.log(value)
+            const accessToken = getCookie('token');
+            alert("변경된 내용을 저장하시겠습니까?")
+            console.log(accessToken);   
             dispatch(ChangeNickImgDB({
                 nickname: value,
-                userImg: img
+                userImg: img,
+                accessToken
             }))
         }
         const onChange = (e)=>{
             console.log(e.target.value);
             setValue(e.target.value);
         }
-
     return (
         <>
         <MyPageStyle>

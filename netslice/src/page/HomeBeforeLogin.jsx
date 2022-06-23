@@ -8,7 +8,6 @@ import KorLarge from "../images/KorLarge.jpg";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../Cookie";
 
-
 const HomeBeforeLogin = () => {
     const navigate = useNavigate();
     const accessToken = getCookie('token');
@@ -43,7 +42,6 @@ const HomeBeforeLogin = () => {
         }
         // ( idCheckInfo === undefined ) ? console.log(idCheckInfo) : (idCheckInfo === true) ? navigate('/signup') : navigate('/login')
       }, [idCheckInfo]);
-
 
     return (
         <>
@@ -126,7 +124,6 @@ export const LangLoginBtnWrap = styled.div`
     margin-top: 10px;
     /* background-color: #e50914; */
 `
-
 export const LoginBtn = styled.a`
     background-color: #e50914;
     padding: 7px 17px;
@@ -135,7 +132,6 @@ export const LoginBtn = styled.a`
     white-space: nowrap;
     cursor: pointer;
 `
-
 export const Landingbody = styled.div`    
     position: relative;
     top: 30%;
@@ -171,7 +167,7 @@ const LandingForm = styled.form`
     display:flex;
     align-items: center;
     justify-content: center;
-`;
+`
 
 export const LandingFormInput = styled.input`
     outline-width: 0;
@@ -197,7 +193,5 @@ export const LandingFormBtn = styled.button`
     border: none;
     cursor: pointer;
 ` 
-
-
 
 export default HomeBeforeLogin;
