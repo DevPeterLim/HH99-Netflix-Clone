@@ -5,59 +5,90 @@ import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux/es/exports'
 import { useGetDetail } from '../Hooks/useGetDetail'
 import Header from '../components/Header'
-import apis from '../api/main'
-import { useGetLike } from '../Hooks/useGetLike'
+import {useNavigate} from 'react-router-dom'
 import { putLike, putList } from '../redux/module/likeReducer'
+import { useQueryClient } from 'react-query'
 
 
 const Detail = () => {
 
-    const movieId = useParams().id;
+    const queryClient = useQueryClient(); 
+    const navigate = useNavigate();
+    const movieId = useParams().id; 
     const dispatch = useDispatch();
     const {data:detail} =useGetDetail({movieId});
-    console.log(detail?.isList);
+    console.log(detail);
     const info = detail?.detail
     // const islike = data?.likes[Number(movieId)-1];
     const islike = detail?.isLike;
     const islist = detail?.isList;
 
-   
+    console.log("db : " +islike);
+
+    // const [isLike,setIsLike] = useState(detail?.isLike);
+    // const [isList,setIsList] = useState(detail?.isList);
+
+    //console.log("front : " + isLike)
     const like=() => {
+       // setIsLike(true)
+        queryClient.invalidateQueries()
         dispatch(putLike({
-            like : true,
+            isLike : true,
             movieId : info?.id,
         }))
     }
 
     const likex=() => {
+      //  setIsLike(false)
+        queryClient.invalidateQueries()
         dispatch(putLike({
-            like : false
+            isLike : false,
+            movieId : info?.id,
         }))
     }
 
     const list = () =>{
+      //  setIsList(true)
+        queryClient.invalidateQueries()
         dispatch(putList({
-            like : true
+            isList : true,
+            movieId : info?.id,
         }))
     }
 
     const listx =() =>{
+       // setIsList(false);
+        queryClient.invalidateQueries()
         dispatch(putList({
-            like : false
+            isList : false,
+            movieId : info?.id,
         }))
     }
+
+    const gomain= ()=>{
+        navigate('/main');
+    }
+
 
   return (
     <StBox>
             <Header/>
             <StContent>
-                <StVideo muted autoPlay loop src={info?.videoUrl}></StVideo>
-                <StTitle>{info?.title}</StTitle>
-                <StLikeBox>
-                    {/* <StLike onClick={like}/> */}
-                     {islike?<StLike onClick={likex}>좋아요 취소</StLike>:<StLike onClick={like}>좋아요</StLike>}
-                     {islist?<StLike onClick={listx}>찜하기 취소</StLike>:<StLike onClick={list}>찜하기</StLike>}
-                </StLikeBox>
+                {/* <Sthead>
+                    <StCancel onClick={gomain}>X</StCancel>
+                </Sthead> */}
+                <StVideo muted autoPlay loop src={info?.videoUrl}>
+                </StVideo>
+                <StUpBox>
+                    <StTitle>{info?.title}</StTitle>
+                    <StLikeBox>
+                        {islike?
+                        <StLike onClick={likex}>좋아요 취소</StLike>:
+                        <StLike onClick={like}>좋아요</StLike>}
+                        {islist?<StList onClick={listx}>찜하기 취소</StList>:
+                        <StList onClick={list}>찜하기</StList>}
+                    </StLikeBox>
+                </StUpBox>
                 <StOutBox>
                     <StInBox>
                         <StText>{info?.content}</StText>
@@ -71,18 +102,37 @@ const Detail = () => {
                     </StInBox>
                 </StOutBox>
             </StContent>
-        
     </StBox>
   )
 }
+const Sthead = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: end;
+`;
+
+const StUpBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    width : 100%;
+`;
+
+const StList = styled.button`
+    width :10rem;
+    height:2rem;
+    margin : 0 0 0 1rem;
+    cursor: pointer;
+`;
 
 const StLike = styled.button`
     width :10rem;
-    height:1rem;
+    height:2rem;
+    cursor: pointer;
 `;
 
 const StLikeBox = styled.div`
-
+    display:flex;
+    margin : 1rem 0 0 4.5rem;
 `;
 
 
@@ -102,13 +152,22 @@ const StTitle = styled.div`
     font-weight: 600;
     color : white;
     width:100%;
-    margin : 0 0 0 2.3rem;
+    margin : 0 0 0 4.5rem;
     
 `;
 
 const StVideo = styled.video`
     position: relative;
     border-radius: 0.5rem;
+`;
+
+const StCancel = styled.button`
+    width: 1.5rem;
+    height:1.5rem;
+    background-color: #242323;
+    border: none;
+    color:white;
+    margin : 0 0.7rem 0 0;
 `;
 
 const StImg = styled.div`
@@ -139,7 +198,7 @@ const StContent = styled.div`
     align-items: center;
     justify-content: center;
     background-color : #242323;
-    margin : auto 0 auto 0;
+    margin : 5rem 0 0 0;
     width:60rem;
     border-radius: 1rem;
 `;

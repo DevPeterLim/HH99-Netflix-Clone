@@ -11,7 +11,7 @@ import MyPage from './page/MyPage';
 import MyProfileImages from './page/MyProfileImages';
 import ProfileChangeCheck from './page/ProfileChangeCheck';
 import PwChange from './page/PwChange';
-
+import Genre from './page/Genre';
 
 function App() {
   
@@ -24,6 +24,7 @@ function App() {
       <Route path='/signup' element={<Signup/>} />
       <Route path='/login' element={<Login/>} />
       <Route path = "/main" element = {<Main/>} />
+      <Route path = "/main/:genre" element = {<Genre/>} />
       <Route path = "/detail/:id" element = {<Detail/>} />
       <Route path = "/mylist" element = {<MyList/>} />
       <Route path = "/mypage" element = {<MyPage/>} />

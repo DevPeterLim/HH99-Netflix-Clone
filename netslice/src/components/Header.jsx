@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
-import logo from '../img/logo.png';
 import {useNavigate} from 'react-router-dom'
 import { useState } from 'react';
 import { useRef } from 'react';
@@ -9,20 +8,52 @@ import { useGetSearch } from '../Hooks/useGetSearch';
 import netslice from '../netsliceLogo.png'
 import searchLogo from '../searchLogo.png'
 import { useDispatch } from 'react-redux';
+import { getSearch } from '../redux/module/searchReducer';
 
-const Header = () => {
+const Header = (props) => {
+
+    console.log(props);
 
     const navigate = useNavigate();
     const [isSearching,setIsSearching] = useState(0);
     const dispatch = useDispatch();
-  //  const [srch,setSrch] = useState("");
+    const a = "멜로/로맨스"
+
     const search = useRef(null);
     const moveHome = () => {
         navigate("/main");
     }
 
+    const movemypage=()=>{
+        navigate('/mypage')
+    }
+
     const moveMyList = () => {
         navigate("/mylist")
+    }
+
+    const moveAction=()=>{
+        navigate("/main/액션")
+    }
+
+    const moveRomance = () =>{
+        navigate(`/main/${a}`)
+    }
+
+    const moveSF = () =>{
+        navigate("/main/SF")
+    }
+
+    const moveHorror=()=>{
+        navigate("/main/공포")
+    }
+
+    const moveComedy=()=>{
+        navigate("/main/코미디")
+    }
+
+    const moveDrama=()=>{
+        navigate("/main/드라마")
     }
 
     const searching = () => {
@@ -35,41 +66,53 @@ const Header = () => {
     }
 
     useEffect(()=>{
-        
     },[])
 
-    const putsearch=()=>{
-        dispatch()
-
-
-
+    const getsearch=(event)=>{
+        console.log(event.target.value);
+        dispatch(getSearch({
+            text : encodeURI(encodeURIComponent([event.target.value])),
+        }))
     }
    
-
+    const scroll = ()=>{
+        let value = window.scrollY*0.01;
+        console.log(value);
+    }
     
 
   return (
-    <StBox>
+    <StBox onWheel={scroll}>
         <StLogo onClick={moveHome} src={netslice}/>
         <StLeft>
             <StButtonL onClick={moveHome}>홈</StButtonL>
             <StButtonL onClick={moveMyList}>내가 찜한 콘텐츠</StButtonL>
+            <StButtonL onClick={moveAction}>액션</StButtonL>
+            <StButtonL onClick={moveSF}>SF</StButtonL>
+            <StButtonL onClick={moveHorror}>공포</StButtonL>
+            <StButtonL onClick={moveComedy}>코미디</StButtonL>
+            <StButtonL onClick={moveRomance}>멜로/로맨스</StButtonL>
+            <StButtonL onClick={moveDrama}>드라마</StButtonL>
+           
+            
         </StLeft>
         <StRight>
             <StSBox click={isSearching}>
                 <StSearchBox click={isSearching}>
                     <StSearchImg click={isSearching} src={searchLogo} onClick={searching}/>
-                    <StSearchInput click={isSearching} placeholder='제목으로 검색' ref ={search}></StSearchInput>
-                    <StButton onClick={putsearch}></StButton>
+                    <StSearchInput click={isSearching} placeholder='제목으로 검색' onChange={getsearch}></StSearchInput>
+                    {/* <StButton onClick={putsearch}></StButton> */}
                 </StSearchBox>
             </StSBox>
-            <StButtonR onClick={moveMyList}>마이페이지</StButtonR>
+            <StButtonR onClick={movemypage}>마이페이지</StButtonR>
         </StRight>
     </StBox>
   )
 }
 
-const StButton = styled.button``;
+const StButton = styled.button`
+
+`;
 
 const StSBox = styled.div`
     width: 14rem;
@@ -97,7 +140,7 @@ const StLeft = styled.div`
 
 const StRight = styled.div`
     display: flex;
-    width : 50vw;
+    width : 40vw;
     justify-content: end;
     align-items: center;
 `;

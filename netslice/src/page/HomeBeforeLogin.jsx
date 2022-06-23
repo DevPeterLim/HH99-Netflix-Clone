@@ -158,7 +158,6 @@ export const LandingFormDiv = styled.div`
     /* position: relative; */
     /* background-color: red; */
     display:flex;
-    flex-direction:row;
     align-items: center;
     justify-content: center;
 `
@@ -177,6 +176,7 @@ export const LandingFormInput = styled.input`
     min-width: 450px;
     border: none;
     margin: 0 auto;
+
     align-self: center;
     justify-items: center;
     align-items: center;
