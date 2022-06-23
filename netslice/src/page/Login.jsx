@@ -4,15 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginDB } from "../redux/module/userReducer";
 import netsliceLogo from "../netsliceLogo.png"
 import styled from "styled-components"
-import { MainJumbotron } from "./HomeBeforeLogin";
-import { MainGradient } from "./HomeBeforeLogin";
+import { LandingHeaders, Logo, MainJumbotron, MainGradient } from "./HomeBeforeLogin";
 import { idCheck } from "../redux/module/userReducer";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../Cookie";
 
 const Login = ()=> {
     const navigate = useNavigate();
+    const accessToken = getCookie('token');
     useEffect(()=>{
-        dispatch(idCheck(null))})
+        if(accessToken){
+            navigate('/main')
+    } dispatch(idCheck(null))})
+        
     const mailInfo = useSelector(store => store?.userReducer.email);
     const isLogin = useSelector(store => store?.userReducer.isLogin)
     useEffect(() => { 
@@ -41,18 +45,29 @@ const Login = ()=> {
     }
     return (
         <>
-        <img src={netsliceLogo}/>
         <MainJumbotron>
             <MainGradient>
+                <LandingHeaders>
+                    <Logo onClick={()=>navigate('/')} style={{cursor:"pointer"}}>
+                    <img src={netsliceLogo}/>
+                    </Logo>
+                </LandingHeaders>
                 <LoginWrap>
-                    <LoginForm>
+                <LoginForm>
                     <LoginH1>로그인</LoginH1>
                     <LoginInput type={'email'} placeholder={"이메일 주소 또는 전화번호"} ref={emailRef} value={value} onChange={onChange}></LoginInput><br/>
                     <LoginInput type={'password'} placeholder={"비밀번호"} ref={pwRef}></LoginInput><br/>
                     <LoginBtn onClick={loginHandler}>로그인</LoginBtn>
-                    <input type={'checkbox'} id={"rememberMe"}/>
-                    <label htmlFor={'rememberMe'}>로그인 정보저장</label>
-                    </LoginForm>
+                    <LoginUnderWrap>
+                        <LoginUnderInput type={'checkbox'} id={"rememberMe"}></LoginUnderInput>
+                        <LoginUnderLabel htmlFor={'rememberMe'} style={{fontSize:"13px"}}>로그인 정보저장</LoginUnderLabel>
+                        <LoginUnderHelpSpan>도움이 필요하신가요?</LoginUnderHelpSpan>
+                    </LoginUnderWrap>
+                </LoginForm>
+                    <LoginFooter>
+                        <LoginFooterDiv>Netflix 회원이 아닌가요?</LoginFooterDiv>
+                        <LoginFooterAtag onClick={()=>navigate('/signup')}>지금 가입하세요.</LoginFooterAtag>
+                    </LoginFooter>
                 </LoginWrap>
             </MainGradient>
         </MainJumbotron>
@@ -60,11 +75,50 @@ const Login = ()=> {
     )
 }
 
+export const LoginFooter = styled.div`
+    margin-top: 40px;
+    display: flex;
+`
+
+export const LoginFooterDiv = styled.div`
+    color: #737373;
+`
+export const LoginFooterAtag = styled.a`
+    text-decoration: none;
+    margin-left: 10px;
+    cursor: pointer;
+`
+
+export const LoginUnderWrap = styled.div`
+    display:inline-flex;
+    color: #b3b3b3;
+    align-items: center;
+    margin-top: 5px;
+`
+export const LoginUnderInput = styled.input`
+    display:inline;
+`
+export const LoginUnderLabel = styled.label`
+    display:flex;
+    font-size:13px;
+    width: 50%;
+    justify-content: flex-start;
+`
+export const LoginUnderHelpSpan = styled.span`
+    margin-left: 4px;
+    font-size: 13px;
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+`
+
 export const LoginWrap = styled.div`
+    position: relative;
+    top: 90px;
     color: white;
     background-color: rgba(0,0,0,.75);
-    min-height: 660px;
-    width: 450px;
+    min-height: 500px;
+    width: 360px;
     margin-left: auto;
     margin-right: auto;
     padding: 70px;

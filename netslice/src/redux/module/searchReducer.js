@@ -4,6 +4,7 @@ import apis from '../../api/main';
 export const getSearch = (payload) =>{
     return async function(){
         const {data} = await apis.getSearch(payload);
+        console.log(data);
     }
 }
 

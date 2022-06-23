@@ -6,13 +6,19 @@ import { mailtemp } from "../redux/module/userReducer";
 import { useDispatch, useSelector } from "react-redux";
 import KorLarge from "../images/KorLarge.jpg";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../Cookie";
 
 
 const HomeBeforeLogin = () => {
+    const navigate = useNavigate();
+    const accessToken = getCookie('token');
+    useEffect(()=>{
+        if(accessToken){
+            navigate('/main')}
+        })
     const idCheckInfo = useSelector(store => store.userReducer.idCheck);
     const emailRef = useRef(null);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -43,7 +49,6 @@ const HomeBeforeLogin = () => {
         <>
             <MainJumbotron>
                 <MainGradient>
-                {/* <img src={KorLarge}/> */}
                 <LandingHeaders>
                     <Logo>
                         <img src={netsliceLogo}/>
@@ -175,9 +180,14 @@ export const LandingFormInput = styled.input`
     min-width: 450px;
     border: none;
     margin: 0 auto;
+
+    align-self: center;
+    justify-items: center;
+    align-items: center;
 `
 export const LandingFormBtn = styled.button`
-    margin: 0 auto;
+    align-items: center;
+    margin: 0;
     padding: 16px 20px;
     height: 60px;
     min-width: 74px;

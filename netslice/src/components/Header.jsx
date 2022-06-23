@@ -24,6 +24,10 @@ const Header = (props) => {
         navigate("/main");
     }
 
+    const movemypage=()=>{
+        navigate('/mypage')
+    }
+
     const moveMyList = () => {
         navigate("/mylist")
     }
@@ -67,7 +71,7 @@ const Header = (props) => {
     const getsearch=(event)=>{
         console.log(event.target.value);
         dispatch(getSearch({
-            text : event.target.value,
+            text : encodeURI(encodeURIComponent([event.target.value])),
         }))
     }
    
@@ -100,7 +104,7 @@ const Header = (props) => {
                     {/* <StButton onClick={putsearch}></StButton> */}
                 </StSearchBox>
             </StSBox>
-            <StButtonR onClick={moveMyList}>마이페이지</StButtonR>
+            <StButtonR onClick={movemypage}>마이페이지</StButtonR>
         </StRight>
     </StBox>
   )
@@ -136,7 +140,7 @@ const StLeft = styled.div`
 
 const StRight = styled.div`
     display: flex;
-    width : 50vw;
+    width : 40vw;
     justify-content: end;
     align-items: center;
 `;

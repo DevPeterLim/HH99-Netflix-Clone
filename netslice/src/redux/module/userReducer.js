@@ -5,12 +5,13 @@ import { setCookie } from "../../Cookie";
 //initState
 const initState = {
     email : "",
-    nickname : "", // 광민님이랑 논의 필요
+    nickname : "nickname1", // 광민님이랑 논의 필요
     idCheck: null,
     loading: false,
     error: null,
     isLogin : false,
-    isMailCheck : null
+    isMailCheck : null,
+    userImg: ""
 }
 
 //action type
@@ -19,11 +20,10 @@ const SIGNUP = 'userReducer/SIGNUP';
 const LOGIN = 'userReducer/LOGIN';
 const LOGOUT = 'userReducer/LOGOUT';
 const MAIL_TEMP = 'userReducer/MAIL_TEMP';
+const NICKIMG_CHANGE = 'userReducer/NICKIMG_CHANGE';
 
 const LOADING = 'userReducer/LOADING';
 const ERROR = 'userReducer/ERROR'; 
-
-
 
 //action creator func
 export const idCheck = (payload) => {
@@ -38,7 +38,6 @@ const login = (payload) => {
 const logout = (payload) => {
     return { type : LOGOUT, payload}
 }
-
 const loading = (payload) => {
     return { type : LOADING, payload}
 }
@@ -47,6 +46,9 @@ const error = (payload) => {
 }
 export const mailtemp = (payload) => {
     return { type : MAIL_TEMP, payload}
+}
+const nickimg = (payload) => {
+    return { type : NICKIMG_CHANGE, payload}
 }
 
 //middlewares
@@ -141,6 +143,55 @@ export const loginDB = (payload) => {
         }
     }
 }
+export const ChangeNickImgDB = (payload) => {
+    return async function(dispatch) {
+        dispatch(loading(true));
+        try {
+            const nickImgResp = await axios ({
+                method : "patch",
+                url : 'http://15.164.50.132:8000/user/mypage',
+                data : {
+                    userImg: payload.userImg,
+                    nickname: payload.nickName
+                }
+                // Bearer token 확인필요
+            })
+            console.log(nickImgResp)
+            if (nickImgResp.status === 200) {
+                alert("변경 성공")
+                dispatch(nickimg(nickImgResp.data))
+            } 
+            else {
+                alert("변경 내역이 없습니다. ")
+            }
+        } catch (error) {
+            alert('변경 실패');
+            console.log(error)
+        } finally {
+            dispatch(loading(false))
+        }
+    }
+}
+export const changePwDB = (payload) => {
+    return async function(dispatch) {
+        dispatch(loading(true));
+        try {
+            const pwChangeResp = await axios ({
+                method: "post",
+                url : 'http://15.164.50.132:8000/user/emailAuth',
+                data : {} // post 인데 data가 없나요?
+            })
+            console.log(pwChangeResp)
+            if (pwChangeResp.status === 200){
+                alert("메일 발송됨")
+            }
+        } catch (error){
+            console.log(error)
+        } finally {
+            dispatch(loading(false))
+        }
+    }
+}
 
 //reducer
 export default function userReducer (state=initState, action = {}){
@@ -152,6 +203,8 @@ export default function userReducer (state=initState, action = {}){
             return { ...state, isLogin: true, email: action.payload }
         case MAIL_TEMP :
             return { ...state, email: action.payload}
+        case NICKIMG_CHANGE :
+            return { ...state, nickname: action.payload.nickname, userImg: action.payload.userImg}
         default:
             return state;
     }
