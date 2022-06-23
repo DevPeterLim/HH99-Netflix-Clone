@@ -13,10 +13,10 @@ import { LoginBtn, LoginFooter, LoginFooterAtag, LoginFooterDiv, LoginForm, Logi
 const Signup = () => {
     const navigate = useNavigate();
     const accessToken = getCookie('token');
-    // useEffect(()=>{
-    //     if(accessToken){
-    //         navigate('/main')
-    //     }});
+    useEffect(()=>{
+        if(accessToken){
+            navigate('/main')
+        }});
 
     useEffect(()=>{
         dispatch(idCheck(null))})
