@@ -114,6 +114,7 @@ export const Logo = styled.span`
     background-image: url(${netsliceLogo});
     background-repeat: no-repeat;
     z-index: 100;
+    cursor: pointer;
 `
 export const LangLoginBtnWrap = styled.div`
     /* position: fixed; */

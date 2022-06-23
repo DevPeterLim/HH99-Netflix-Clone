@@ -13,7 +13,7 @@ import { getSearch } from '../redux/module/searchReducer';
 const Header = (props) => {
 
     console.log(props);
-
+    const text = useRef(null);
     const navigate = useNavigate();
     const [isSearching,setIsSearching] = useState(0);
     const dispatch = useDispatch();
@@ -68,11 +68,12 @@ const Header = (props) => {
     useEffect(()=>{
     },[])
 
-    const getsearch=(event)=>{
-        console.log(event.target.value);
+    const getsearch=()=>{
+        console.log(text.current.value);
         dispatch(getSearch({
-            text : encodeURI(encodeURIComponent([event.target.value])),
+            text : encodeURI(encodeURIComponent([text.current.value])),
         }))
+        navigate(`/search/${text.current.value}`)
     }
    
     const scroll = ()=>{
@@ -98,10 +99,9 @@ const Header = (props) => {
         </StLeft>
         <StRight>
             <StSBox click={isSearching}>
-                <StSearchBox click={isSearching}>
+                <StSearchBox onSubmit={getsearch} click={isSearching}>
                     <StSearchImg click={isSearching} src={searchLogo} onClick={searching}/>
-                    <StSearchInput click={isSearching} placeholder='제목으로 검색' onChange={getsearch}></StSearchInput>
-                    {/* <StButton onClick={putsearch}></StButton> */}
+                    <StSearchInput click={isSearching}  placeholder='제목으로 검색' ref={text}></StSearchInput>
                 </StSearchBox>
             </StSBox>
             <StButtonR onClick={movemypage}>마이페이지</StButtonR>
@@ -122,7 +122,7 @@ const StSBox = styled.div`
     justify-content: end;
 `;
 
-const StSearchBox =styled.div`
+const StSearchBox =styled.form`
     width : 12.5rem;
     display: flex;
     align-items: center;

@@ -4,24 +4,21 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import Genres from '../components/Genres';
 import { useGetMovie } from '../Hooks/useGetMovie';
+import { useSelector } from 'react-redux';
 
-
-const Genre = () => {
-    const {data} = useGetMovie();
-    const genre = useParams().genre;
-    const movies = data?.movie.filter(value => value.category==genre);
-    console.log(genre);
-
-
-
+const Search = () => {
+    const searched = useParams().text;
+    const data = useSelector(state=>state.searchReducer.search);
+    console.log(data[0]);
+    
   return (
     <Box>
         <Header/>
-          <StGenre>{genre}</StGenre>
+          <StGenre>"{searched}" 를 검색합니다.</StGenre>
           <StBox>
-          {movies?.map((value,index) => {
+          {data?.map((value,index) => {
                     return <Genres key={index} id ={value.id} imgUrl={value.imgUrl} category={value.category} title={value.title} />
-          })}
+          })} 
           </StBox>
     </Box>
   )
@@ -47,4 +44,5 @@ const StBox = styled.div`
     margin : 0 0 0 0;
 `;
 
-export default Genre
+
+export default Search

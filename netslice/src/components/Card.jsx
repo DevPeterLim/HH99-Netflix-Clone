@@ -12,7 +12,6 @@ const Card = (props) => {
     navigate(`/detail/${props?.id}`);
   };
   
-  //console.log(props)
   return (
     <React.Fragment>
       <div className='box' onClick={openModal}>

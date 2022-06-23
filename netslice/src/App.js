@@ -12,6 +12,8 @@ import MyProfileImages from './page/MyProfileImages';
 import ProfileChangeCheck from './page/ProfileChangeCheck';
 import PwChange from './page/PwChange';
 import Genre from './page/Genre';
+import Search from './page/Search';
+import Header from './components/Header';
 
 function App() {
   
@@ -25,6 +27,7 @@ function App() {
       <Route path='/login' element={<Login/>} />
       <Route path = "/main" element = {<Main/>} />
       <Route path = "/main/:genre" element = {<Genre/>} />
+      <Route path = "/search/:text" element = {<Search/>} />
       <Route path = "/detail/:id" element = {<Detail/>} />
       <Route path = "/mylist" element = {<MyList/>} />
       <Route path = "/mypage" element = {<MyPage/>} />
